@@ -76,9 +76,22 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Aliases for most used tools.
 alias gst="git status"
+# cp with progress bar
+alias cp="rsync -p --progress"
+alias todo=vim $HOME/.todo
+
+
+# Show todo file when starting a new shell
+if [ -f "$HOME/.todo" ] ;then 
+cat $HOME/.todo 
+fi
+
+plugins=(git brew)
+
+# Settings for ducknorris theme.
 POWERLINE_DETECT_SSH="true"
 POWERLINE_GIT_CLEAN="✔"
 POWERLINE_GIT_DIRTY="✘"
@@ -90,7 +103,6 @@ POWERLINE_GIT_RENAMED="➜"
 POWERLINE_GIT_UNMERGED="═"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git brew)
 
 # PROXY CONFIGURATION
 export http_proxy=http://127.0.0.1:3128
@@ -98,8 +110,4 @@ export https_proxy=http://127.0.0.1:3128
 export HTTP_PROXY=http://127.0.0.1:3128
 export HTTPS_PROXY=http://127.0.0.1:3128
 
-if [ -f "$HOME/.todo" ] ;then 
-cat $HOME/.todo 
-fi
 
-alias todo=vim $HOME/.todo
