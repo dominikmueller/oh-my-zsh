@@ -82,11 +82,12 @@ alias gst="git status"
 # cp with progress bar
 alias cp="rsync -p --progress"
 alias todo=vim $HOME/.todo
-
+# use the vimless script
+alias less="vless"
 
 # Show todo file when starting a new shell
-if [ -f "$HOME/.todo" ] ;then 
-cat $HOME/.todo 
+if [ -f "$HOME/.todo" ] ;then
+cat $HOME/.todo
 fi
 
 plugins=(git brew)
@@ -110,4 +111,12 @@ export https_proxy=http://127.0.0.1:3128
 export HTTP_PROXY=http://127.0.0.1:3128
 export HTTPS_PROXY=http://127.0.0.1:3128
 
-
+# make vim a pager
+function vless() {
+  local less_path=`find $(vim --version | awk ' /fall-back/ { gsub(/\"/,"",$NF); print $NF }'  )/ -name less.sh`
+  if [[ -z $less_path ]]; then
+    echo 'less.sh not found'
+    exit 1
+  fi
+  $less_path $*
+}
